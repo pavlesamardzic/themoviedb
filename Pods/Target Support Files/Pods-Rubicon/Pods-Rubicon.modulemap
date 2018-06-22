@@ -1,0 +1,6 @@
+framework module Pods_Rubicon {
+  umbrella header "Pods-Rubicon-umbrella.h"
+
+  export *
+  module * { export * }
+}
