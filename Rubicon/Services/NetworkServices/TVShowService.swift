@@ -2,7 +2,7 @@
 //  TVShowService.swift
 //  Rubicon
 //
-//  Created by Pavle on 15.6.18..
+//  Created by Pavle on 19.6.18..
 //  Copyright © 2018. Pavle. All rights reserved.
 //
 
@@ -20,7 +20,6 @@ class TVShowService: BaseConfiguration {
             if let _error = response.error{
                 failedRequest(_error)
             }
-            //these two are exclusively
             if let _error = response.result.error{
                 failedRequest(_error)
             }

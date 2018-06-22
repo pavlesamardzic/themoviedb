@@ -1,10 +1,16 @@
+//
+//  HomeViewController.swift
+//  Rubicon
+//
+//  Created by Pavle on 20.6.18..
+//  Copyright © 2018. Pavle. All rights reserved.
+//
 
 import Foundation
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, HomeViewProtocol {
-  
-   
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tabControll: UISegmentedControl!
@@ -12,7 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var window: UIWindow?
     var searchActive : Bool = false
     var filtered:[String] = []
-
+    
     var viewModel: HomeViewModel? = nil
     
     override func viewDidLoad() {
@@ -45,11 +51,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (viewModel?.movies.isEmpty == false && (viewModel?.isMovieSelected)! == true) && (searchActive == false) {
             cell.showMovieData(data: (viewModel?.movies[indexPath.row])!, position: indexPath.row)
         }
-        
+            
         else if (viewModel?.tvShows.isEmpty == false && (viewModel?.isMovieSelected)! == false && (searchActive == false)){
             cell.showTvShowData(data: (viewModel?.tvShows[indexPath.row])!, position: indexPath.row)
         }
-        
+            
         else if (viewModel?.searchResultMovies.isEmpty == false && (viewModel?.isMovieSelected)! == true && (searchActive == true)){
             cell.showMovieData(data: (viewModel?.searchResultMovies[indexPath.row])!, position: indexPath.row)
         }
@@ -57,7 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if (viewModel?.searchResultTvShows.isEmpty == false && (viewModel?.isMovieSelected)! == false && (searchActive == true) ){
             cell.showTvShowData(data: (viewModel?.searchResultTvShows[indexPath.row])!, position: indexPath.row)
         }
-            return cell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +77,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if ((viewModel?.isMovieSelected)! == true) {
             viewModel?.valueToPass = (viewModel?.movies[indexPath.row].id)!
-             newViewController.isMovieSelected = true
+            newViewController.isMovieSelected = true
         }
         else if ((viewModel?.isMovieSelected)! == false) {
             viewModel?.valueToPass  = (viewModel?.tvShows[indexPath.row].id)!
@@ -86,18 +92,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.searchBar.barTintColor = UIColor.white
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-       // tableView. = filtered.filter({$0.lowercased().contains(searchBar.text.lowercased())})
-        
-        
-        
-        //searchActive = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        //searchActive = false
-    }
-
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
         resetSearchResult()
@@ -112,10 +106,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewModel?.listSize = (viewModel?.tvShows.count)!
             showTVShowData(tvShows: (viewModel?.tvShows)!)
         }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //searchActive = false
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -139,13 +129,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
     }
     
-    
     // movie
-    func showMovieData(movies: Array<ApiMovies>) {
+    func showMovieData(movies: Array<ApiMovie>) {
         tableView.reloadData()
     }
     
-    func showMoviesSearchResult(movies: Array<ApiMovies>) {
+    func showMoviesSearchResult(movies: Array<ApiMovie>) {
         tableView.reloadData()
     }
     
@@ -155,13 +144,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func showTVShowData(tvShows: Array<ApiTVShows>) {
-         tableView.reloadData()
+        tableView.reloadData()
     }
     
     func failedToShowData(error: String) {
         Alert.init().show("Whoops", message: "Something went wrong! ", buttonText: "Ok", viewController: self)
     }
-    
     
     @IBAction func tabChanged(_ sender: Any) {
         switch tabControll.selectedSegmentIndex {

@@ -19,4 +19,5 @@ class BaseConfiguration: ApiConfiguration {
     init() {
         self.url = Bundle.main.object(forInfoDictionaryKey: "BaseApiUrl") as? String ?? ""
     }
+    
 }

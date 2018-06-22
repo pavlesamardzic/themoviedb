@@ -2,24 +2,23 @@
 //  TableViewCell.swift
 //  Rubicon
 //
-//  Created by Pavle on 14.6.18..
+//  Created by Pavle on 20.6.18..
 //  Copyright © 2018. Pavle. All rights reserved.
 //
-
 
 import Foundation
 import UIKit
 import SDWebImage
 
 class TableViewCell: UITableViewCell{
-
+    
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var RankingLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var overview: UILabel!
     var i = 0
     
-    func showMovieData(data: ApiMovies, position: Int) {
+    func showMovieData(data: ApiMovie, position: Int) {
         name.text = "\(data.title)"
         overview.text = "\(data.overview)"
         RankingLabel.text = "\(position+1)"

@@ -2,13 +2,13 @@
 //  TVShowManager.swift
 //  Rubicon
 //
-//  Created by Pavle on 15.6.18..
+//  Created by Pavle on 18.6.18..
 //  Copyright © 2018. Pavle. All rights reserved.
 //
 
 import Foundation
 
-class TopListManager {
+class ApiManager {
     let networkService: Any? = nil
     
     // movies
@@ -17,7 +17,7 @@ class TopListManager {
         networkService.getTopRatedMovies(succeededRequest: success, failedRequest: failure)
     }
     
-    func getMovieById(id: Int, success: @escaping (ApiMovies)->(), failure: @escaping (Error)->()) {
+    func getMovieById(id: Int, success: @escaping (ApiMovie)->(), failure: @escaping (Error)->()) {
         let networkService = MovieService()
         networkService.getMovieById(id: id, succeededRequest: success, failedRequest: failure)
     }
@@ -26,7 +26,6 @@ class TopListManager {
         let networkService = MovieService()
         networkService.getMoviesByQuery(query: query, succeededRequest: success, failedRequest: failure)
     }
-    
     
     // tv shows
     func getTVShowTopList(success: @escaping (TvShowsApiResponse)->(), failure: @escaping (Error)->()) {

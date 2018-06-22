@@ -2,7 +2,7 @@
 //  BaseNetworkService.swift
 //  Rubicon
 //
-//  Created by Pavle on 20.6.18..
+//  Created by Pavle on 19.6.18..
 //  Copyright © 2018. Pavle. All rights reserved.
 //
 
@@ -44,6 +44,7 @@ class BaseNetworkService {
         if let _url = URL(string: fromUrl){
             return _url
         }
-        return URL(fileURLWithPath: "") // this should never happend
+        return URL(fileURLWithPath: "")
     }
+    
 }

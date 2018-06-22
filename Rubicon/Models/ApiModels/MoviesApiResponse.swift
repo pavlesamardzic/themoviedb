@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class MoviesApiResponse: BaseApiResponse {
-    var results: [ApiMovies]? = nil
+    var results: [ApiMovie]? = nil
     
     override func mapping(map: Map) {
         results <- map["results"]

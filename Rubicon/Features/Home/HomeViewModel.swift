@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 protocol HomeViewProtocol {
-    func showMovieData(movies: Array<ApiMovies>)
+    func showMovieData(movies: Array<ApiMovie>)
     func showTVShowData(tvShows: Array<ApiTVShows>)
     
-    func showMoviesSearchResult(movies: Array<ApiMovies>)
+    func showMoviesSearchResult(movies: Array<ApiMovie>)
     func showTvShowSearchResult(tvShows: Array<ApiTVShows>)
     
     func failedToShowData (error: String)
@@ -21,10 +21,9 @@ protocol HomeViewProtocol {
 
 class HomeViewModel {
     var output: HomeViewProtocol?
-   // var movieData: ApiMovies?
-    var movies: Array<ApiMovies> = Array<ApiMovies>()
+    var movies: Array<ApiMovie> = Array<ApiMovie>()
     var tvShows: Array<ApiTVShows> = Array<ApiTVShows>()
-    var searchResultMovies: Array<ApiMovies> = Array<ApiMovies>()
+    var searchResultMovies: Array<ApiMovie> = Array<ApiMovie>()
     var searchResultTvShows: Array<ApiTVShows> = Array<ApiTVShows>()
     var valueToPass: Int = 0
     var isMovieSelected: Bool = true
@@ -40,7 +39,7 @@ class HomeViewModel {
             for i in 0..<10 {
                 topTenTvShows.append(data.results![i])
             }
-             self.listSize = topTenTvShows.count
+            self.listSize = topTenTvShows.count
             self.tvShows = data.results!
             self.output?.showTVShowData(tvShows: topTenTvShows)
         }
@@ -49,12 +48,12 @@ class HomeViewModel {
             self.output?.failedToShowData(error: error.localizedDescription)
         }
         
-        TopListManager().getTVShowTopList(success: succeeded, failure: failed)
+        ApiManager().getTVShowTopList(success: succeeded, failure: failed)
     }
     
     func getMoviesTopList(){
         let succeeded: (MoviesApiResponse) -> Void = { (data) in
-            var topTenMovies = Array<ApiMovies>()
+            var topTenMovies = Array<ApiMovie>()
             for i in 0..<10 {
                 topTenMovies.append(data.results![i])
             }
@@ -67,9 +66,8 @@ class HomeViewModel {
             self.output?.failedToShowData(error: error.localizedDescription)
         }
         
-        TopListManager().getMoviesTopList(success: succeeded, failure: failed)
+        ApiManager().getMoviesTopList(success: succeeded, failure: failed)
     }
-    
     
     func searchMovies(query: String){
         let succeeded: (MoviesApiResponse) -> Void = { (data) in
@@ -82,7 +80,7 @@ class HomeViewModel {
             self.output?.failedToShowData(error: error.localizedDescription)
         }
         
-        TopListManager().getMoviesByQuery(query: query, success: succeeded, failure: failed)
+        ApiManager().getMoviesByQuery(query: query, success: succeeded, failure: failed)
     }
     
     func searchTvShows(query: String){
@@ -93,11 +91,11 @@ class HomeViewModel {
         }
         
         let failed: (Error) -> Void = {(error) in
-             print(error.localizedDescription)
+            print(error.localizedDescription)
             self.output?.failedToShowData(error: error.localizedDescription)
         }
         
-        TopListManager().getTvShowByQuery(query: query, success: succeeded, failure: failed)
+        ApiManager().getTvShowByQuery(query: query, success: succeeded, failure: failed)
     }
     
 }
