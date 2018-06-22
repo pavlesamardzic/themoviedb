@@ -24,7 +24,10 @@ class DetailsViewController: UIViewController, DetailsViewProtocol {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         detailsViewModel = DetailsViewModel(output: self as DetailsViewProtocol)
-        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         if (isMovieSelected){
             detailsViewModel?.getMovie(id: id)
         } else {
@@ -39,16 +42,19 @@ class DetailsViewController: UIViewController, DetailsViewProtocol {
     func showMovieById(movie: ApiMovie) {
         name.text = movie.title
         Description.text = movie.overview
-        let url = "https://image.tmdb.org/t/p/w500" + movie.poster_path
-        print("image url: " + url)
-        image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
+        
+        setImage(path: movie.poster_path)
     }
     
     func showTVShowById(tvShow: ApiTVShows) {
         name.text = tvShow.name
         Description.text = tvShow.overview
-        let url = "https://image.tmdb.org/t/p/w500" + tvShow.poster_path
-        print("image url: " + url)
+      
+        setImage(path: tvShow.poster_path)
+    }
+    
+    func setImage(path: String){
+        let url = "https://image.tmdb.org/t/p/w500" + path
         image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
     }
     

@@ -14,7 +14,8 @@ class MovieService: BaseConfiguration {
     func getTopRatedMovies(succeededRequest: @escaping (MoviesApiResponse)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key":"72f55c16869bd538f34e82cd2a794a44"]
+         var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key":apiKey]
         
         let request: URLRequest = baseNetworkService.buildRequest(path: "/movie/top_rated", method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<MoviesApiResponse>) -> Void in
@@ -36,7 +37,8 @@ class MovieService: BaseConfiguration {
     func getMovieById(id: Int, succeededRequest: @escaping (ApiMovie)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key":"72f55c16869bd538f34e82cd2a794a44"]
+        var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key":apiKey]
         let request: URLRequest = baseNetworkService.buildRequest(path: "/movie/" + "\(id)" , method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<ApiMovie>) -> Void in
             
@@ -57,7 +59,8 @@ class MovieService: BaseConfiguration {
     func getMoviesByQuery(query: String, succeededRequest: @escaping (MoviesApiResponse)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key" : "72f55c16869bd538f34e82cd2a794a44", "query" : query]
+        var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key" : apiKey, "query" : query]
         
         let request: URLRequest = baseNetworkService.buildRequest(path: "search/movie/", method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<MoviesApiResponse>) -> Void in

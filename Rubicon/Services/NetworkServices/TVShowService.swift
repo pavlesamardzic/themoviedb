@@ -13,7 +13,9 @@ class TVShowService: BaseConfiguration {
     func getTopRatedTVShows(succeededRequest: @escaping (TvShowsApiResponse)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key":"72f55c16869bd538f34e82cd2a794a44"]
+        
+        var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key":apiKey]
         
         let request: URLRequest = baseNetworkService.buildRequest(path: "tv/top_rated", method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<TvShowsApiResponse> ) -> Void in
@@ -32,7 +34,8 @@ class TVShowService: BaseConfiguration {
     func getTvShowById(id: Int, succeededRequest: @escaping (ApiTVShows)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key":"72f55c16869bd538f34e82cd2a794a44"]
+        var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key":apiKey]
         let request: URLRequest = baseNetworkService.buildRequest(path: "/tv/" + "\(id)" , method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<ApiTVShows>) -> Void in
             
@@ -53,7 +56,8 @@ class TVShowService: BaseConfiguration {
     func getTVShowsByQuery(query: String, succeededRequest: @escaping (TvShowsApiResponse)->(), failedRequest: @escaping (Error) -> ()){
         let baseNetworkService = BaseNetworkService.init(config: self)
         var params:[String: Any] = [:]
-        params = ["api_key" : "72f55c16869bd538f34e82cd2a794a44", "query" : query]
+        var apiKey: String = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String ?? ""
+        params = ["api_key" : apiKey, "query" : query]
         
         let request: URLRequest = baseNetworkService.buildRequest(path: "/search/tv/", method: .get, encoding: URLEncoding.default, params: params)
         baseNetworkService.execute(request: request).responseObject {(response: DataResponse<TvShowsApiResponse> ) -> Void in
