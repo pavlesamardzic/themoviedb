@@ -44,7 +44,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZb-Eu-OjR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SZb-Eu-OjR">
                                                     <rect key="frame" x="15" y="7" width="74" height="74"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadious">
@@ -81,8 +81,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="jj5-YH-D55" secondAttribute="trailing" constant="15" id="1KS-KP-xMi"/>
                                                 <constraint firstItem="eYz-7b-geq" firstAttribute="top" secondItem="g0m-gm-4xQ" secondAttribute="top" constant="45" id="DOh-ju-GT1"/>
+                                                <constraint firstItem="jZD-Of-abh" firstAttribute="leading" secondItem="SZb-Eu-OjR" secondAttribute="trailing" constant="4" id="De4-bO-WdA"/>
                                                 <constraint firstItem="4Wu-Sv-IS3" firstAttribute="leading" secondItem="g0m-gm-4xQ" secondAttribute="leading" constant="335" id="Fqd-gV-tSb"/>
-                                                <constraint firstAttribute="trailing" secondItem="SZb-Eu-OjR" secondAttribute="trailing" constant="190" id="G6N-Io-svb"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Wu-Sv-IS3" secondAttribute="trailing" constant="12" id="Ldd-au-acp"/>
                                                 <constraint firstAttribute="trailing" secondItem="eYz-7b-geq" secondAttribute="trailing" constant="40" id="QQ3-Tj-c81"/>
                                                 <constraint firstAttribute="bottom" secondItem="ca9-1Z-lCa" secondAttribute="bottom" constant="47.5" id="RIb-iu-d2E"/>
